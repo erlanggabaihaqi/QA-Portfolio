@@ -18,7 +18,29 @@
     --accent-light: #F0EFE8;
     --tag-bg: #EFEFEB;
     --tag-text: #3A3A36;
+    --accent-color: #E8622A;
   }
+  [data-theme="dark"] {
+  --bg: #111110;
+  --surface: #1A1A18;
+  --text: #F0EFE8;
+  --muted: #9A9A94;
+  --border: #2A2A28;
+  --tag-bg: #222220;
+  --tag-text: #C0C0B8;
+  --accent-light: #222220;
+  --accent-color: #F07348;
+  }
+  [data-theme="dark"] nav {
+  background: rgba(17,17,16,0.92);
+  }
+  [data-theme="dark"] .stat-card,
+  [data-theme="dark"] .skill-group,
+  [data-theme="dark"] .project-item,
+  [data-theme="dark"] .resume-box {
+  background: var(--surface);
+  border-color: var(--border);
+}
 
   html { scroll-behavior: smooth; }
 
@@ -32,38 +54,46 @@
   }
 
   .nav-links a.active {
-  color: var(--bg);
-  background: var(--text);
-  padding: 4px 10px;
-  border-radius: 4px;
+    color: var(--bg);
+    background: var(--accent-color);
+    padding: 4px 10px;
+    border-radius: 4px;
   }
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    background: rgba(248,247,244,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    z-index: 100;
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 56px;
-  }
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(248,247,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+  gap: 2rem;
+}
   .nav-logo {
     font-family: 'DM Serif Display', serif;
     font-size: 18px;
-    color: var(--text);
+    color: var(--accent-color);
     text-decoration: none;
   }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  
+  .nav-links { 
+  display: flex; 
+  gap: 2rem; 
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+  }
   .nav-links a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-    text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  text-transform: uppercase;
   }
   .nav-links a:hover { color: var(--text); }
 
@@ -82,6 +112,27 @@
     background: var(--text); border-radius: 2px;
     transition: all 0.2s;
   }
+
+  .theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.theme-toggle:hover { 
+  background: var(--accent-light); 
+  color: var(--text);
+}
 
   /* SECTIONS */
   section { scroll-margin-top: 56px; }
@@ -127,7 +178,7 @@
   }
   .hero-title em {
     font-style: italic;
-    color: var(--muted);
+    color: var(--accent-color);
   }
   .hero-desc {
     font-size: 17px;
@@ -139,31 +190,36 @@
   .hero-cta {
     display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
   }
+
   .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--text);
-    color: #F8F7F4;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  border: none; cursor: pointer;
   }
-  .btn-primary:hover { opacity: 0.85; }
+  .btn-primary:hover { 
+  opacity: 1;
+  background: var(--accent-color); 
+  }
+
   .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent;
-    color: var(--text);
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    transition: background 0.2s;
-    cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
   }
   .btn-secondary:hover { background: var(--accent-light); }
 
@@ -173,7 +229,7 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--accent-color);
     margin-bottom: 0.5rem;
   }
   .section-title {
@@ -266,7 +322,14 @@
     text-decoration: none;
     color: inherit;
   }
-  .project-item:hover { border-color: var(--text); }
+  .project-item:hover { 
+  border-color: var(--accent-color); 
+  }
+  .project-arrow:hover {
+  background: var(--accent-color);
+  color: var(--bg);
+  border-color: var(--accent-color);
+  }
   .project-type {
     font-size: 11px;
     font-weight: 500;
@@ -292,22 +355,23 @@
     margin-top: 4px;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
-  .project-item:hover .project-arrow {
-    background: var(--text); color: var(--bg); border-color: var(--text);
-  }
 
   /* RESUME */
   #resume { padding: 6rem 0; background: var(--surface); }
   .resume-box {
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 3rem;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  transition: border-color 0.2s;
+  }
+  .resume-box:hover {
+    border-color: var(--accent-color);
   }
   .resume-box h3 {
     font-family: 'DM Serif Display', serif;
@@ -376,9 +440,12 @@
     <li><a href="#resume" onclick="closeNav()">Resume</a></li>
     <li><a href="#contact" onclick="closeNav()">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex; align-items:center; gap:12px;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️ Light</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -622,7 +689,6 @@
   // Active nav on scroll
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-
   window.addEventListener('scroll', () => {
   let current = '';
   
@@ -637,7 +703,6 @@
       }
     });
   }
-
   navLinks.forEach(link => {
     link.classList.remove('active');
     if (link.getAttribute('href') === '#' + current) {
@@ -645,6 +710,26 @@
     }
   });
 });
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  if (html.getAttribute('data-theme') === 'dark') {
+    html.removeAttribute('data-theme');
+    btn.innerHTML = '☀️ Light';
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.innerHTML = '🌙 Dark';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  document.getElementById('themeToggle').innerHTML = '🌙 Dark';
+}
 </script>
 
 </body>

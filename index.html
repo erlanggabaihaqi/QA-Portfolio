@@ -31,6 +31,13 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  .nav-links a.active {
+  color: var(--bg);
+  background: var(--text);
+  padding: 4px 10px;
+  border-radius: 4px;
+  }
+
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
@@ -405,8 +412,9 @@
     <div class="about-grid">
       <div class="about-text">
         <h2 class="section-title" style="margin-bottom: 1.5rem;">A detail-oriented Tester<br><em style="font-family: 'DM Serif Display', serif; font-style: italic; color: var(--muted);">who loves breaking things.</em></h2>
-        <p>I'm a QA Manual Tester based in Jakarta, with hands-on experience in web, mobile, API, and database testing at a multinational company. I approach every build with curiosity and a methodical mindset.</p>
-        <p>Beyond manual testing, I'm actively learning Test Automation — working toward a full-stack QA role that blends quality engineering with modern tooling.</p>
+        <p>I got into QA because I enjoy exploring products and finding things that don’t work the way they should. There’s something satisfying about spotting a bug, reporting it and seeing it get fixed. 
+          <br> It feels like you’ve saved someone from a bad experience.</p>
+        <p>Based in Jakarta, currently testing Web, Mobile and API — and working my way into automation.</p>
       </div>
       <div class="about-stats">
         <div class="stat-card">
@@ -610,6 +618,33 @@
       nav.classList.remove('open');
     }
   });
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+  let current = '';
+  
+  // Kalau udah di bottom page, force contact
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+    current = 'contact';
+  } else {
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 80;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+  }
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>
